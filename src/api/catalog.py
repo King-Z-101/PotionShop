@@ -1,6 +1,13 @@
 from fastapi import APIRouter
+import sqlalchemy
+from src import database as db
+from sqlalchemy import text
 
 router = APIRouter()
+
+with db.engine.begin() as connection:
+        t = text("SELECT * FROM catalog")
+        result = connection.execute(sqlalchemy.text(sql_to_execute))
 
 
 @router.get("/catalog/", tags=["catalog"])
@@ -18,3 +25,4 @@ def get_catalog():
                 "potion_type": [100, 0, 0, 0],
             }
         ]
+

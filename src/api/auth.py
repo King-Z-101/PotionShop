@@ -2,6 +2,11 @@ from fastapi import Security, HTTPException, status, Request
 from fastapi.security.api_key import APIKeyHeader
 import os
 import dotenv
+import sqlalchemy
+from src import database as db
+
+with db.engine.begin() as connection:
+        result = connection.execute(sqlalchemy.text(sql_to_execute))
 
 dotenv.load_dotenv()
 

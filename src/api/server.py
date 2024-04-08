@@ -6,6 +6,11 @@ import json
 import logging
 import sys
 from starlette.middleware.cors import CORSMiddleware
+import sqlalchemy
+from src import database as db
+
+with db.engine.begin() as connection:
+        result = connection.execute(sqlalchemy.text(sql_to_execute))
 
 description = """
 Central Coast Cauldrons is the premier ecommerce site for all your alchemical desires.
